@@ -10,10 +10,10 @@ app.use(cors());
 const posts = {};
 
 app.post("/events", async (req, res) => {
-    console.log('Received event in moderation :>> ', req.body.type);
     const { type, data } = req.body;
 
     if (type === "CommentCreated") {
+        console.log('Received event in moderation :>> ', req.body.type);
         const status = data.content.includes("orange") ? "rejected" : "approved";
         await axios.post("http://localhost:4005/events", {
             type: "CommentModerated",
