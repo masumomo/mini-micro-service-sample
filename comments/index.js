@@ -54,5 +54,6 @@ app.post("/events", async (req, res) => {
 });
 
 app.listen(4001, () => {
+  console.log('version 1 :>> ');
   console.log('Listening on 4001');
 });
