@@ -17,6 +17,7 @@ const handleEvent = (type, data) => {
     if (type === "PostCreated") {
         const { id, title } = data;
         posts[id] = { id, title, comments: [] };
+        console.log('posts :>> ', posts);
     } else if (type === "CommentCreated") {
         const { id, content, postId, status } = data;
         posts[postId].comments.push({ id, content, status });
@@ -42,7 +43,7 @@ app.post("/events", (req, res) => {
 app.listen(4002, async () => {
     console.log('Listening on 4002');
 
-    const res = await axios.get("http://event-bus-srv:4005/events").catch((e) => {
+    const res = await axios.get("http://events-bus-srv:4005/events").catch((e) => {
         console.log('e :>> ', e);
     });
     console.log('res :>> ', res.data);
